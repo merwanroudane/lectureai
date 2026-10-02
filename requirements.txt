@@ -1,8 +1,8 @@
-# أسس التعلّم في الذكاء الاصطناعي — Dr Merwan Roudane
-# يتطلّب Python 3.11 أو أحدث
+# Foundations of Learning in AI - Dr Merwan Roudane
+# Requires Python 3.11 or newer.
 #
-# ملاحظة: الحدّ الأدنى لـ streamlit هو 1.63 لأنّ المنصّة تستعمل
-# st.navigation و st.Page و st.iframe و st.pills و width="stretch".
+# The Streamlit floor is 1.63: the app uses st.navigation, st.Page,
+# st.iframe, st.pills and width="stretch".
 
 streamlit>=1.63,<2
 altair>=5.4,<7

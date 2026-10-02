@@ -39,7 +39,7 @@ streamlit run streamlit_app.py
 
 ## النشر
 
-### 1 · Streamlit Community Cloud (الأسهل والمجّاني)
+### Streamlit Community Cloud
 
 المستودع عامّ وجاهز للنشر دون أيّ ملفّ إضافي:
 
@@ -58,19 +58,6 @@ streamlit run streamlit_app.py
 
 يُحدَّث التطبيق تلقائيًّا مع كلّ `git push` إلى `main`.
 
-### 2 · الاستضافة الذاتية بـ Docker
-
-```bash
-docker build -t lectureai .
-```
-
-```bash
-docker run --rm -p 8501:8501 lectureai
-```
-
-ثمّ افتح <http://localhost:8501>. ملفّ `Dockerfile` يقرأ المنفذ من المتغيّر
-`PORT`، فيعمل كما هو على Render و Railway و Fly.io.
-
 ### ملاحظات نشر
 
 - لا يحتاج التطبيق أيّ **أسرار** أو مفاتيح أو قاعدة بيانات.
@@ -82,7 +69,6 @@ docker run --rm -p 8501:8501 lectureai
 ## البنية
 
 ```
-Dockerfile                  # للاستضافة الذاتية (اختياري)
 streamlit_app.py            # نقطة الدخول + التنقّل + الشريط الجانبي
 .streamlit/config.toml      # السمة الفاتحة + الخطوط العربية (Cairo / Tajawal)
 lib/
