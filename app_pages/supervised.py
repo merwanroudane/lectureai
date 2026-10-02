@@ -55,19 +55,25 @@ st.markdown(
     r"""
 **المُعطى:** مجموعة تدريب مكوّنة من أزواج (مُدخل، مُخرج صحيح):
 
-$$ D = \{(x_1, y_1),\; (x_2, y_2),\; \dots,\; (x_n, y_n)\},
-\qquad x_i \in \mathcal{X},\; y_i \in \mathcal{Y} $$
+$$
+D = \{(x_1, y_1),\; (x_2, y_2),\; \dots,\; (x_n, y_n)\},
+\qquad x_i \in \mathcal{X},\; y_i \in \mathcal{Y}
+$$
 
 مسحوبةٌ باستقلالٍ من توزيع مجهول $P(X, Y)$.
 
 **المطلوب:** إيجاد دالّة $\hat{f} : \mathcal{X} \to \mathcal{Y}$ تُصغّر **الخطر المتوقَّع**:
 
-$$ R(f) = \mathbb{E}_{(x,y) \sim P}\big[\, L\big(y,\; f(x)\big) \,\big] $$
+$$
+R(f) = \mathbb{E}_{(x,y) \sim P}\big[\, L\big(y,\; f(x)\big) \,\big]
+$$
 
 **المشكلة:** لا نعرف $P$، فلا نستطيع حساب $R(f)$. لذلك نُصغّر بديلًا متاحًا،
 هو **الخطر التجريبي** على بيانات التدريب:
 
-$$ \hat{R}(f) = \frac{1}{n} \sum_{i=1}^{n} L\big(y_i,\; f(x_i)\big) $$
+$$
+\hat{R}(f) = \frac{1}{n} \sum_{i=1}^{n} L\big(y_i,\; f(x_i)\big)
+$$
 
 وهذا المبدأ يُسمّى **تصغير الخطر التجريبي** (Empirical Risk Minimisation — ERM)،
 وهو حجر الأساس النظري لتعلّم الآلة المُشرَف كلّه.

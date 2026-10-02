@@ -57,9 +57,9 @@ ui.section("مبرهنة بايز: آلة تحديث الاعتقاد", "Bayes' 
 
 st.markdown(
     r"""
-$$ \underbrace{P(H \mid D)}_{\text{البَعْدي}} \;=\;
-\frac{\overbrace{P(D \mid H)}^{\text{الإمكان}} \cdot \overbrace{P(H)}^{\text{القَبْلي}}}
-{\underbrace{P(D)}_{\text{الدليل}}} $$
+$$
+P(H \mid D) \;=\; \frac{P(D \mid H)\,\cdot\,P(H)}{P(D)}
+$$
 
 | الرمز | الاسم | المعنى |
 |---|---|---|

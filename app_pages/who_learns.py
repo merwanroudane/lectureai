@@ -130,7 +130,11 @@ st.markdown(
     r"""
 في نظرية التعلّم الإحصائي تُمثَّل العملية بصورة شديدة الوضوح:
 
-$$ A : S \longmapsto h \qquad\text{أو}\qquad h = A(S) $$
+$$
+A : S \longmapsto h
+\qquad \Longleftrightarrow \qquad
+h = A(S)
+$$
 
 حيث:
 
@@ -141,7 +145,9 @@ $$ A : S \longmapsto h \qquad\text{أو}\qquad h = A(S) $$
 وإذا كان لدينا فضاء فرضيات $\mathcal{H}$، فإنّ الخوارزمية تبحث — صراحةً أو ضمنًا —
 عن عنصر مناسب داخله:
 
-$$ A(S) \in \mathcal{H} $$
+$$
+A(S) \in \mathcal{H}
+$$
 """
 )
 
@@ -309,10 +315,15 @@ ui.section("مثال متكامل: الانحدار الخطّي — من هو �
 
 st.markdown(
     r"""
-$$ y_i = \beta_0 + \beta_1 x_i + \varepsilon_i \qquad ; \qquad
-\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i $$
+$$
+y_i = \beta_0 + \beta_1 x_i + \varepsilon_i
+\qquad ; \qquad
+\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i
+$$
 
-$$ \hat{\beta} = \arg\min_{\beta} \sum_i \big(y_i - x_i^\top \beta\big)^2 $$
+$$
+\hat{\beta} = \arg\min_{\beta} \sum_i \big(y_i - x_i^\top \beta\big)^2
+$$
 """
 )
 
@@ -463,7 +474,9 @@ st.markdown(
 التدريب يجيب عن سؤال: **«هل استطعنا تكوين حالة للنموذج من خبرة التدريب؟»**
 أمّا التعلّم الجيّد فيسأل: **«هل ما اكتسبناه مفيدٌ خارج العيّنة؟»**
 
-$$ \\text{Generalization gap} \\;\\approx\\; \\text{Test Error} - \\text{Training Error} $$
+$$
+\\text{Generalization gap} \\;\\approx\\; \\text{Test Error} - \\text{Training Error}
+$$
 
 **الرابط مع ميتشل:** إذا كان مقياس الأداء $P$ هو الأداء **خارج العيّنة**،
 فإنّ مفهوم «التعلّم» يصير أقرب مباشرةً إلى **التعميم** لا إلى مجرّد انخفاض خسارة التدريب.

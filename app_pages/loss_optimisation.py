@@ -199,8 +199,10 @@ st.markdown(
     r"""
 نضيف إلى الخسارة حدًّا يعاقب **تعقيد النموذج**:
 
-$$ L_{\text{total}} = \underbrace{L_{\text{data}}}_{\text{طابق البيانات}}
-\;+\; \lambda \cdot \underbrace{\Omega(\theta)}_{\text{ابقَ بسيطًا}} $$
+$$
+L_{\text{total}} \;=\; \underbrace{L_{\text{data}}}_{\text{fit the data}}
+\;+\; \lambda \cdot \underbrace{\Omega(\theta)}_{\text{stay simple}}
+$$
 
 و$\lambda$ هو **ثمن التعقيد**: كلّما كبر، فضّل النموذج البساطة على مطابقة البيانات.
 """

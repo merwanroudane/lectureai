@@ -92,14 +92,19 @@ html, body,
 [data-testid="stMetricValue"], [data-testid="stMetricLabel"] { direction: rtl; }
 [data-testid="stExpander"] summary { direction: rtl; text-align: right; }
 
-/* ===== 3. الشيفرة والرياضيات تبقى LTR ===== */
+/* ===== 3. الشيفرة والرياضيات تبقى LTR =====
+   ملاحظة دقيقة: خاصّية direction وحدها لا تكفي داخل فقرة RTL، لأنّها لا تُطبَّق
+   ما لم تُفتح طبقة عزل ثنائي الاتّجاه. وبدون unicode-bidi تُعيد خوارزمية bidi
+   ترتيب رموز KaTeX فتظهر المعادلة معكوسة. */
 code, pre, .stCode, [data-testid="stCode"],
-.katex, .katex-display, [data-testid="stLatex"],
+.katex, .katex-display, .katex-html, [data-testid="stLatex"],
 [data-testid="stJson"], .stDataFrame, [data-testid="stDataFrame"] {
     direction: ltr !important;
+    unicode-bidi: isolate !important;
     text-align: left !important;
 }
-.katex-display { text-align: center !important; }
+.katex-display { text-align: center !important; display: block !important; }
+.katex-display > .katex { display: inline-block !important; text-align: initial !important; }
 
 /* الرسوم البيانية (Vega/Altair) تُرسم باتّجاه لاتيني حتّى لا تنقلب المحاور */
 [data-testid="stVegaLiteChart"], .vega-embed, .vega-embed * ,

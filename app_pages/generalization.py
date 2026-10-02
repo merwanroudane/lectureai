@@ -26,10 +26,12 @@ st.markdown(
 
 $$
 \mathbb{E}\big[(y_0 - \hat{f}(x_0))^2\big] \;=\;
-\underbrace{\big(\text{Bias}[\hat f(x_0)]\big)^2}_{\text{التحيّز}^2} \;+\;
-\underbrace{\text{Var}[\hat f(x_0)]}_{\text{التباين}} \;+\;
-\underbrace{\sigma^2_\varepsilon}_{\text{الضجيج}}
+\underbrace{\big(\text{Bias}[\hat f(x_0)]\big)^2}_{\text{bias}^2} \;+\;
+\underbrace{\text{Var}[\hat f(x_0)]}_{\text{variance}} \;+\;
+\underbrace{\sigma^2_\varepsilon}_{\text{noise}}
 $$
+
+أي: **الخطأ = التحيّز² + التباين + الضجيج** — ولا مكوّن رابع لها.
 """
 )
 
