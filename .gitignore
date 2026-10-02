@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# أدوات محلّية
+.claude/
+.vscode/
+.idea/
+
+# نظام التشغيل
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ملفّات مؤقّتة
+*.log
+*.tmp
+_scratch/

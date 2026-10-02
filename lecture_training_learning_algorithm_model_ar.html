@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>من يتعلّم؟ ومن يُدرَّب؟ — محاضرة معمقة في التعلم والتدريب والخوارزمية والنموذج</title>
+<style>
+:root{
+  --bg:#f7f9fc; --paper:#ffffff; --ink:#162033; --muted:#5c667a;
+  --navy:#173a67; --blue:#2563eb; --cyan:#0891b2; --teal:#0f766e;
+  --green:#15803d; --amber:#b45309; --red:#b91c1c; --violet:#6d28d9;
+  --line:#dbe3ef; --soft:#eef4ff; --soft2:#f0fdfa; --soft3:#fff7ed; --soft4:#fdf2f8;
+  --shadow:0 10px 28px rgba(21,35,60,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Tahoma","Arial","Noto Sans Arabic",sans-serif;line-height:1.9}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1320px;margin:auto;padding:0 22px}
+.hero{background:linear-gradient(135deg,#0f2746,#173a67 45%,#0f766e);color:#fff;padding:58px 0 48px;position:relative;overflow:hidden}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.07)}
+.hero:before{width:360px;height:360px;left:-120px;top:-120px}.hero:after{width:260px;height:260px;right:-90px;bottom:-120px}
+.kicker{display:inline-block;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;font-size:14px}
+h1{font-size:clamp(34px,5vw,62px);line-height:1.25;margin:16px 0 10px;letter-spacing:-.5px}
+.subtitle{font-size:20px;max-width:980px;color:#e8f2ff;margin:0}
+.meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}.meta span{background:rgba(255,255,255,.11);padding:7px 12px;border-radius:10px;font-size:14px}
+.layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:24px;align-items:start;margin-top:24px;margin-bottom:70px}
+.sidebar{position:sticky;top:16px;background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow);max-height:calc(100vh - 32px);overflow:auto}
+.sidebar h3{margin:0 0 10px;color:var(--navy);font-size:17px}.sidebar a{display:block;padding:7px 9px;border-radius:9px;color:#31405a;font-size:14px}.sidebar a:hover{background:var(--soft);text-decoration:none;color:var(--blue)}
+main{min-width:0}
+.section{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:28px;margin-bottom:22px;box-shadow:0 6px 18px rgba(31,51,82,.045)}
+.section h2{margin:0 0 14px;color:var(--navy);font-size:28px;line-height:1.45}.section h3{color:#234d7e;margin-top:26px;font-size:21px}.section h4{color:#36536f;margin:20px 0 8px;font-size:17px}
+.lead{font-size:18px;color:#334155}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.card{border:1px solid var(--line);border-radius:15px;padding:17px;background:#fff}.card h4{margin-top:0}.card.blue{border-top:5px solid var(--blue)}.card.green{border-top:5px solid var(--green)}.card.amber{border-top:5px solid var(--amber)}.card.violet{border-top:5px solid var(--violet)}.card.teal{border-top:5px solid var(--teal)}.card.red{border-top:5px solid var(--red)}
+.callout{border-radius:15px;padding:16px 18px;margin:18px 0;border-right:5px solid}.callout.info{background:#eff6ff;border-color:var(--blue)}.callout.ok{background:#ecfdf5;border-color:var(--green)}.callout.warn{background:#fff7ed;border-color:var(--amber)}.callout.danger{background:#fef2f2;border-color:var(--red)}.callout.note{background:#f5f3ff;border-color:var(--violet)}
+.say{font-size:19px;font-weight:700;color:#0f3b67}.avoid{font-size:18px;font-weight:700;color:var(--red)}
+.term{display:inline-block;direction:ltr;font-weight:700;color:#164e63;background:#ecfeff;border:1px solid #cffafe;padding:1px 7px;border-radius:7px;margin:0 2px}
+.eq{direction:ltr;text-align:center;font-family:"Cambria Math","Times New Roman",serif;font-size:22px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:13px;padding:15px;margin:16px 0;overflow:auto}
+.pipeline{display:flex;align-items:stretch;gap:8px;flex-wrap:wrap;justify-content:center;margin:22px 0}.node{min-width:145px;flex:1 1 145px;padding:14px;border-radius:14px;text-align:center;font-weight:700;border:1px solid}.node small{display:block;font-weight:400;color:#46546a}.n1{background:#eff6ff;border-color:#bfdbfe}.n2{background:#f5f3ff;border-color:#ddd6fe}.n3{background:#fff7ed;border-color:#fed7aa}.n4{background:#ecfdf5;border-color:#bbf7d0}.n5{background:#ecfeff;border-color:#a5f3fc}.arrow{align-self:center;font-size:27px;color:#64748b;font-weight:900;transform:rotate(180deg)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;margin:16px 0}table{border-collapse:collapse;width:100%;min-width:720px;background:#fff}th,td{padding:12px 14px;border-bottom:1px solid #e7edf5;vertical-align:top}th{background:#eef4ff;color:#173a67;text-align:right}tr:last-child td{border-bottom:0}.yes{color:var(--green);font-weight:700}.no{color:var(--red);font-weight:700}.maybe{color:var(--amber);font-weight:700}
+.badge{font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;display:inline-block}.b-theory{background:#ede9fe;color:#5b21b6}.b-practice{background:#dbeafe;color:#1d4ed8}.b-stat{background:#dcfce7;color:#166534}
+.timeline{border-right:3px solid #bfdbfe;padding-right:22px;margin-right:8px}.step{position:relative;margin:16px 0}.step:before{content:"";position:absolute;right:-31px;top:8px;width:14px;height:14px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 5px #dbeafe}
+.code{direction:ltr;text-align:left;background:#111827;color:#e5e7eb;border-radius:14px;padding:16px;overflow:auto;font-family:Consolas,monospace;font-size:14px;line-height:1.65}
+.quiz{border:1px solid #c4b5fd;background:#faf5ff;border-radius:16px;padding:18px;margin:14px 0}.quiz button{border:0;background:var(--violet);color:#fff;padding:8px 13px;border-radius:9px;cursor:pointer}.answer{display:none;margin-top:12px;padding:12px;background:#fff;border-radius:10px;border:1px solid #e9d5ff}
+.source{font-size:14px;color:#475569}.source li{margin-bottom:8px}
+hr.sep{border:0;border-top:1px solid var(--line);margin:28px 0}
+.footer{background:#10243d;color:#dbeafe;padding:32px 0;margin-top:40px}.footer strong{color:#fff}
+.print-note{font-size:13px;color:#64748b}
+@media(max-width:980px){.layout{grid-template-columns:1fr}.sidebar{position:relative;top:0;max-height:none}.grid2,.grid3,.grid4{grid-template-columns:1fr}.arrow{transform:rotate(90deg);width:100%;text-align:center}.pipeline{display:grid;grid-template-columns:1fr}.section{padding:21px}}
+@media print{body{background:#fff}.sidebar{display:none}.layout{display:block}.hero{background:#173a67!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.section{box-shadow:none;break-inside:avoid}.quiz button{display:none}.answer{display:block}.wrap{max-width:none}.footer{break-before:page}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Machine Learning Foundations • محاضرة تأسيسية معمقة</span>
+    <h1>من يتعلّم؟ ومن يُدرَّب؟</h1>
+    <p class="subtitle">تفكيك دقيق لمفاهيم <b>التعلّم Learning</b> و<b>التدريب Training</b> و<b>خوارزمية التعلّم Learning Algorithm</b> و<b>النموذج Model</b> و<b>المعاملات Parameters</b>، مع ربطها بتعريف Tom Mitchell وبالمنظور الإحصائي والحاسوبي الحديث.</p>
+    <div class="meta">
+      <span>إعداد: Dr Merwan Roudane</span>
+      <span>المستوى: مبتدئ → متوسط</span>
+      <span>الهدف: إزالة الالتباس المفاهيمي قبل دراسة الخوارزميات</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap layout">
+<aside class="sidebar">
+  <h3>خريطة المحاضرة</h3>
+  <a href="#s0">0. الفكرة المركزية</a>
+  <a href="#s1">1. لماذا يحدث الالتباس؟</a>
+  <a href="#s2">2. قاموس المفاهيم</a>
+  <a href="#s3">3. ثلاث مستويات للحديث عن التعلم</a>
+  <a href="#s4">4. تعريف Mitchell: T–E–P</a>
+  <a href="#s5">5. الصياغة الرياضية A(S)=h</a>
+  <a href="#s6">6. ما التدريب؟</a>
+  <a href="#s7">7. ما الذي يتغير أثناء التدريب؟</a>
+  <a href="#s8">8. Algorithm ≠ Optimizer</a>
+  <a href="#s9">9. Learning ≠ Optimization</a>
+  <a href="#s10">10. Training ≠ Inference</a>
+  <a href="#s11">11. مثال الانحدار الخطي</a>
+  <a href="#s12">12. شجرة القرار وK-means وkNN</a>
+  <a href="#s13">13. الشبكات العصبية</a>
+  <a href="#s14">14. الأنماط المختلفة للتعلم</a>
+  <a href="#s15">15. Parameters vs Hyperparameters</a>
+  <a href="#s16">16. Fitting / Estimation / Training</a>
+  <a href="#s17">17. Generalization وOverfitting</a>
+  <a href="#s18">18. الجمل الصحيحة للمحاضر</a>
+  <a href="#s19">19. أخطاء شائعة</a>
+  <a href="#s20">20. أسئلة صفية واختبار فهم</a>
+  <a href="#s21">21. الخلاصة المرجعية</a>
+  <a href="#refs">المراجع الأكاديمية</a>
+</aside>
+
+<main>
+<section id="s0" class="section">
+<h2>0) الفكرة المركزية التي يجب أن يغادر بها الطالب</h2>
+<div class="callout ok">
+  <div class="say">الصياغة التدريسية الأكثر أمانًا:</div>
+  <p><b>نستخدم خوارزمية تعلّم على بيانات التدريب لتقدير/تعلّم حالة النموذج؛ وخلال التدريب تتغير الأشياء القابلة للتعلّم في النموذج، ثم نستخدم النموذج المدرَّب لاحقًا للتنبؤ أو القرار على بيانات جديدة.</b></p>
+</div>
+<div class="pipeline">
+  <div class="node n1">بيانات التدريب<br><small>Training Data / Experience</small></div><div class="arrow">←</div>
+  <div class="node n2">خوارزمية التعلّم<br><small>Learning Algorithm</small></div><div class="arrow">←</div>
+  <div class="node n3">التدريب / الملاءمة<br><small>Training / Fitting</small></div><div class="arrow">←</div>
+  <div class="node n4">الحالة المتعلَّمة<br><small>Learned State</small></div><div class="arrow">←</div>
+  <div class="node n5">نموذج مدرَّب<br><small>Trained/Fitted Model</small></div>
+</div>
+<p class="lead">لكن عبارة «مَن يتعلم؟» لها أكثر من جواب صحيح بحسب <b>مستوى التجريد</b>. في نظرية التعلم يمكن أن نقول: «خوارزمية التعلم تتعلم فرضية من العينة». وفي الشرح العملي نقول: «ندرب النموذج، فيتعلم من البيانات». لا يوجد تناقض إذا ميّزنا بين المستوى النظري والمستوى التنفيذي.</p>
+</section>
+
+<section id="s1" class="section">
+<h2>1) لماذا يحدث الالتباس أصلًا؟</h2>
+<p>لأن أدبيات Machine Learning تستخدم كلمة <span class="term">learn</span> على مستويات متعددة. Tom Mitchell يتحدث عن <b>computer program</b> يتحسن بالخبرة، نظرية التعلم تتحدث عن <b>learning algorithm</b> يحول عينة إلى فرضية، والمكتبات البرمجية تتحدث عن <b>model/estimator</b> يتم <span class="term">fit</span> على البيانات. لذلك يجب ألا نحول استعمالًا لغويًا واحدًا إلى قاعدة مطلقة.</p>
+<div class="grid3">
+  <div class="card violet"><h4>المستوى النظري</h4><p><span class="badge b-theory">Learning Theory</span></p><p>الخوارزمية <b>A</b> تستقبل عينة <b>S</b> وتنتج فرضية <b>h</b>.</p></div>
+  <div class="card blue"><h4>المستوى التطبيقي</h4><p><span class="badge b-practice">ML Practice</span></p><p>نُدرّب نموذجًا على البيانات باستخدام خوارزمية أو إجراء تدريب.</p></div>
+  <div class="card green"><h4>المستوى الإحصائي</h4><p><span class="badge b-stat">Statistics</span></p><p>نُقدّر parameters أو نلائم model للبيانات.</p></div>
+</div>
+<div class="callout warn"><b>قاعدة المحاضر:</b> قبل أن تقول «الخوارزمية تتعلم» أو «النموذج يتعلم»، حدّد في ذهنك: هل تتحدث عن <b>التعريف النظري</b> أم عن <b>العملية الحسابية</b> أم عن <b>النموذج الناتج</b>؟</div>
+</section>
+
+<section id="s2" class="section">
+<h2>2) القاموس المفاهيمي: كل عنصر له وظيفة مختلفة</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>المفهوم</th><th>المعنى الدقيق</th><th>السؤال الذي يجيب عنه</th><th>مثال</th></tr></thead>
+<tbody>
+<tr><td><b>Data / Experience</b></td><td>المعلومات أو التجارب التي يستفيد منها نظام التعلم.</td><td>ممّ نتعلم؟</td><td>مشاهدات اقتصادية تاريخية</td></tr>
+<tr><td><b>Model family / Hypothesis class</b></td><td>مجموعة الأشكال الممكنة التي نسمح للنظام بالاختيار منها.</td><td>ما فضاء الحلول الممكنة؟</td><td>جميع الدوال الخطية</td></tr>
+<tr><td><b>Learning algorithm</b></td><td>إجراء يحول الخبرة/العينة إلى نموذج أو فرضية متعلَّمة.</td><td>كيف نستخدم البيانات لاختيار حل؟</td><td>OLS procedure، tree induction</td></tr>
+<tr><td><b>Training / Fitting</b></td><td>تنفيذ عملية التعلم على بيانات محددة للحصول على حالة متعلَّمة.</td><td>متى تتم عملية التقدير؟</td><td>استدعاء fit(X,y)</td></tr>
+<tr><td><b>Learned state</b></td><td>كل ما اكتسبه النموذج من البيانات أثناء التدريب.</td><td>ما الذي تغيّر بسبب البيانات؟</td><td>أوزان، splits، centroids، support vectors</td></tr>
+<tr><td><b>Parameters</b></td><td>قيم داخل النموذج يتم تقديرها/تعلمها من البيانات في كثير من النماذج.</td><td>ما القيم المتعلمة؟</td><td>β، weights، biases</td></tr>
+<tr><td><b>Hyperparameters</b></td><td>إعدادات تتحكم في النموذج أو التدريب ولا تُتعلم عادةً داخل حلقة التدريب نفسها.</td><td>ما الذي نضبطه خارجيًا؟</td><td>learning rate، max_depth</td></tr>
+<tr><td><b>Loss / Objective</b></td><td>مقدار كمي يحدد ما الذي نحاول تحسينه أثناء التدريب.</td><td>ما معنى «أفضل» أثناء التدريب؟</td><td>MSE، cross-entropy</td></tr>
+<tr><td><b>Optimizer</b></td><td>خوارزمية عددية لتعديل parameters بهدف تحسين objective.</td><td>كيف نتحرك في فضاء المعلمات؟</td><td>Gradient Descent، Adam</td></tr>
+<tr><td><b>Inference / Prediction</b></td><td>استخدام النموذج المدرَّب بعد التدريب لإنتاج مخرجات.</td><td>ماذا نفعل بعد التدريب؟</td><td>ŷ=f(x;θ̂)</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s3" class="section">
+<h2>3) ثلاث إجابات صحيحة لسؤال «من يتعلّم؟»</h2>
+<div class="grid3">
+<div class="card violet"><h4>أ) Mitchell: البرنامج يتعلم</h4><p>في التعريف العام، الوحدة التي «تتعلم» هي <b>computer program</b> إذا تحسن أداؤها عبر الخبرة.</p><p><b>هذا تعريف وظيفي Behavioral.</b></p></div>
+<div class="card blue"><h4>ب) Learning Theory: الخوارزمية تتعلم فرضية</h4><p>نكتب <span class="term">A(S)=h</span>. أي أن learning algorithm تستخدم sample لإرجاع hypothesis.</p><p><b>هذا تعريف صوري Abstract.</b></p></div>
+<div class="card green"><h4>ج) Practice: النموذج يتعلم من البيانات</h4><p>نقول عمليًا: «ندرب model؛ يتعلم weights/structure/state من training data».</p><p><b>هذا وصف تنفيذي Practical.</b></p></div>
+</div>
+<div class="callout note"><b>الخلاصة:</b> لا تقل للطالب إن إحدى العبارات «خطأ دائمًا». قل له: <b>المعنى يعتمد على مستوى الحديث</b>. ثم اختر في الشرح اليومي الصياغة الأقل التباسًا: «نستخدم learning algorithm لتدريب model على data».</div>
+</section>
+
+<section id="s4" class="section">
+<h2>4) تعريف Tom Mitchell: المهمة T، الخبرة E، مقياس الأداء P</h2>
+<p>الفكرة المحورية عند Mitchell ليست «هل قمنا بتشغيل Gradient Descent؟»، بل: <b>هل أدت الخبرة إلى تحسن قابل للقياس في أداء البرنامج على مهمة محددة؟</b></p>
+<div class="grid3">
+<div class="card blue"><h4>T — Task</h4><p>المهمة: التنبؤ، التصنيف، التحكم، الترتيب...</p></div>
+<div class="card amber"><h4>E — Experience</h4><p>الخبرة: dataset، interactions، trajectories، feedback...</p></div>
+<div class="card green"><h4>P — Performance</h4><p>مقياس الأداء: RMSE، accuracy، return، ranking metric...</p></div>
+</div>
+<div class="eq">Learning occurs when experience E leads to improved performance P on task T.</div>
+<h3>مثال اقتصادي</h3>
+<p>نريد توقع التضخم للربع القادم.</p>
+<ul>
+<li><b>T:</b> Forecast next-quarter inflation.</li>
+<li><b>E:</b> Historical macroeconomic observations.</li>
+<li><b>P:</b> Out-of-sample RMSE أو MAE.</li>
+</ul>
+<div class="callout warn">انخفاض training loss وحده لا يكفي لإثبات تعلّم مفيد. الهدف العلمي عادةً هو أداء جيد <b>خارج عينة التدريب</b>.</div>
+</section>
+
+<section id="s5" class="section">
+<h2>5) الصياغة الرياضية الأساسية: A(S)=h</h2>
+<p>في نظرية التعلم الإحصائي، يمكن تمثيل العملية بصورة شديدة الوضوح:</p>
+<div class="eq">A : S ⟼ h &nbsp;&nbsp;&nbsp; أو &nbsp;&nbsp;&nbsp; h = A(S)</div>
+<p>حيث:</p>
+<ul>
+<li><b>S</b> = training sample.</li>
+<li><b>A</b> = learning algorithm.</li>
+<li><b>h</b> = learned hypothesis/model.</li>
+</ul>
+<p>وإذا كان لدينا فضاء فرضيات <b>H</b>، فإن الخوارزمية تبحث — صراحة أو ضمنًا — عن عنصر مناسب داخله:</p>
+<div class="eq">A(S) ∈ H</div>
+<div class="callout info"><b>عبارة ممتازة للمحاضرة:</b> «الخوارزمية لا تمثل النموذج النهائي؛ هي الإجراء الذي يستخدم العينة لاختيار نموذج/فرضية من فضاء الإمكانات.»</div>
+</section>
+
+<section id="s6" class="section">
+<h2>6) ما التدريب Training بالضبط؟</h2>
+<p>التدريب هو <b>عملية تنفيذ learning procedure على خبرة محددة</b> بهدف تكوين الحالة المتعلَّمة للنموذج. Google ML Glossary يصف training بأنه عملية تحديد parameters التي تكوّن النموذج؛ لكن هذا الوصف يناسب خصوصًا النماذج المعلمية، بينما المفهوم الأوسع يشمل تعلّم بنية أو أمثلة مخزنة أو مراكز clusters.</p>
+<div class="timeline">
+<div class="step"><b>1. نحدد المهمة وفضاء النموذج</b><br>مثلاً: linear functions أو trees أو neural networks.</div>
+<div class="step"><b>2. نجهز الخبرة/البيانات</b><br>Training sample أو interaction stream.</div>
+<div class="step"><b>3. نحدد criterion</b><br>Loss، likelihood، impurity، reward objective...</div>
+<div class="step"><b>4. ننفذ learning/training algorithm</b><br>حل مغلق، بحث greedy، optimization iterative، Bayesian update...</div>
+<div class="step"><b>5. تتكون learned state</b><br>Parameters أو structure أو stored instances.</div>
+<div class="step"><b>6. نحصل على fitted/trained model</b><br>ثم نقيّمه على validation/test أو بيانات مستقبلية.</div>
+</div>
+<h3>مهم: التدريب ليس دائمًا Gradient Descent</h3>
+<div class="grid2">
+<div class="card blue"><h4>Linear regression</h4><p>قد نستخدم حلًا تحليليًا أو خوارزمية عددية.</p></div>
+<div class="card green"><h4>Decision tree</h4><p>غالبًا بناء greedy للانقسامات، لا Gradient Descent تقليدي.</p></div>
+<div class="card amber"><h4>K-means</h4><p>تخصيص نقاط وتحديث centroids بالتناوب.</p></div>
+<div class="card violet"><h4>Neural network</h4><p>عادة backpropagation + optimizer مثل SGD/Adam.</p></div>
+</div>
+</section>
+
+<section id="s7" class="section">
+<h2>7) ما الذي يتغير فعلًا أثناء التدريب؟ — مفهوم Learned State</h2>
+<p>القول «parameters تتغير» مفيد، لكنه غير كافٍ لكل ML. الأفضل تربويًا هو مفهوم <b>الحالة المتعلَّمة للنموذج</b>.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>النموذج</th><th>ما الذي يتعلمه/يخزنه من البيانات؟</th><th>هل هو مجرد أوزان عددية؟</th></tr></thead>
+<tbody>
+<tr><td>Linear / Logistic Regression</td><td>Coefficients + intercept</td><td class="yes">غالبًا نعم</td></tr>
+<tr><td>Neural Network</td><td>Weights + biases (وأحيانًا running statistics)</td><td class="yes">في الأساس نعم</td></tr>
+<tr><td>Decision Tree</td><td>Feature choices، thresholds، tree structure، leaf values</td><td class="no">لا</td></tr>
+<tr><td>K-means</td><td>Cluster centroids</td><td class="yes">قيم عددية، لكن ليست weights بالمعنى العصبي</td></tr>
+<tr><td>SVM</td><td>Separating solution + support vectors / coefficients</td><td class="maybe">أوسع من مجرد vector واحد</td></tr>
+<tr><td>k-NN</td><td>يعتمد بشدة على تخزين training examples</td><td class="no">لا؛ instance-based</td></tr>
+<tr><td>Bayesian model</td><td>Posterior distribution أو posterior parameters</td><td class="maybe">قد تكون توزيعات لا point estimate فقط</td></tr>
+</tbody></table></div>
+<div class="callout ok"><b>الصياغة الأعم:</b> «أثناء التدريب تتكون أو تتغير <b>الحالة المتعلَّمة Learned State</b> للنموذج استنادًا إلى البيانات.» ثم في النماذج المعلمية تستطيع تبسيطها إلى: «تُقدَّر parameters».</div>
+</section>
+
+<section id="s8" class="section">
+<h2>8) خوارزمية التعلّم ليست بالضرورة هي Optimizer</h2>
+<p>هذا من أهم الفروق التي يخطئ فيها المبتدئون:</p>
+<div class="eq">Learning Algorithm ≠ Optimization Algorithm</div>
+<p><b>Learning algorithm / training procedure</b> أوسع: قد يشمل اختيار mini-batches، حساب loss، regularization، augmentation، تحديث parameters، stopping rule، وغيرها. أما <b>optimizer</b> فمهمته العددية أضيق: اقتراح كيفية تعديل parameters لتحسين objective.</p>
+<div class="pipeline">
+<div class="node n1">Model + Data<br><small>inputs</small></div><div class="arrow">←</div>
+<div class="node n2">Loss / Objective<br><small>what to improve</small></div><div class="arrow">←</div>
+<div class="node n3">Optimizer<br><small>how to update θ</small></div><div class="arrow">←</div>
+<div class="node n4">Updated θ<br><small>new model state</small></div>
+</div>
+<h3>في الشبكة العصبية</h3>
+<div class="eq">θₜ₊₁ = θₜ − η ∇θ L(θₜ)</div>
+<ul>
+<li><b>L</b>: loss.</li>
+<li><b>∇L</b>: gradient، غالبًا يُحسب بواسطة backpropagation.</li>
+<li><b>η</b>: learning rate.</li>
+<li><b>update rule</b>: جزء من optimizer.</li>
+</ul>
+<div class="callout danger"><b>لا تقل:</b> «Gradient Descent هو النموذج» أو «Gradient Descent هو التعلم كله». هو خوارزمية optimization يمكن أن تكون جزءًا من training procedure.</div>
+</section>
+
+<section id="s9" class="section">
+<h2>9) التعلّم ليس هو التحسين Optimization</h2>
+<p>كتاب <i>Deep Learning</i> يخصص قسمًا بعنوان قريب من «كيف يختلف التعلم عن التحسين الخالص». السبب: يمكن أن ننجح في خفض objective على training set ومع ذلك نفشل في generalization.</p>
+<div class="grid2">
+<div class="card amber"><h4>Optimization</h4><p>السؤال: هل وجدنا parameters تقلل training objective؟</p><div class="eq">minθ Ltrain(θ)</div></div>
+<div class="card green"><h4>Learning</h4><p>السؤال: هل نتج عن الخبرة model يؤدي جيدًا على distribution/observations خارج العينة؟</p><div class="eq">Good expected / test performance</div></div>
+</div>
+<div class="callout warn"><b>نتيجة مركزية:</b> قد يكون لدينا optimizer ممتاز + training loss منخفض جدًا، لكن learning سيئ بسبب overfitting أو data leakage أو distribution shift.</div>
+</section>
+
+<section id="s10" class="section">
+<h2>10) Training ≠ Inference</h2>
+<div class="grid2">
+<div class="card blue"><h4>Training / Fitting</h4><ul><li>يدخل data/experience.</li><li>تتغير learned state.</li><li>قد يحتاج loss + optimizer.</li><li>أكثر كلفة عادةً.</li></ul></div>
+<div class="card teal"><h4>Inference / Prediction</h4><ul><li>نستخدم model بعد تثبيت learned state.</li><li>ندخل observation جديدة.</li><li>ننتج prediction/score/action.</li><li>لا يعني عادةً إعادة التدريب.</li></ul></div>
+</div>
+<div class="eq">Training: Dtrain → θ̂ &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp; Inference: (xnew, θ̂) → ŷnew</div>
+</section>
+
+<section id="s11" class="section">
+<h2>11) مثال متكامل: الانحدار الخطي</h2>
+<p>لنربط Machine Learning بما يعرفه طالب الإحصاء والقياس الاقتصادي.</p>
+<div class="eq">yᵢ = β₀ + β₁xᵢ + εᵢ &nbsp;&nbsp; ; &nbsp;&nbsp; ŷᵢ = β̂₀ + β̂₁xᵢ</div>
+<h3>من هو من؟</h3>
+<ul>
+<li><b>Data:</b> الأزواج (xᵢ,yᵢ).</li>
+<li><b>Model family:</b> الدوال الخطية.</li>
+<li><b>Parameters:</b> β₀, β₁.</li>
+<li><b>Objective:</b> مجموع مربعات الأخطاء أو MSE.</li>
+<li><b>Learning/fitting algorithm:</b> إجراء OLS (قد يُحل جبريًا أو عدديًا).</li>
+<li><b>Trained/fitted model:</b> الخط ذو β̂₀ وβ̂₁ المحددين.</li>
+</ul>
+<div class="eq">β̂ = arg minβ Σᵢ (yᵢ − xᵢᵀβ)²</div>
+<div class="callout info"><b>الربط مع الاقتصاد القياسي:</b> ما تسميه في الإحصاء «تقدير المعلمات Estimation» يسمى كثيرًا في ML «Fitting/Training». الفرق ليس في الجوهر الحسابي دائمًا، بل في اللغة والسياق والهدف من التقييم.</div>
+</section>
+
+<section id="s12" class="section">
+<h2>12) لماذا لا يكفي مثال الانحدار؟ شجرة القرار، K-means، وk-NN</h2>
+<h3>أ) Decision Tree</h3>
+<p>الخوارزمية تختار feature وthreshold في كل عقدة وفق معيار مثل impurity reduction. إذن التدريب يبني <b>structure</b>، لا يقدّر vector معاملات فقط.</p>
+<div class="eq">Training data → split search → learned tree structure</div>
+<h3>ب) K-means</h3>
+<p>نبدأ بمراكز clusters، ثم نكرر خطوتين: assignment وcentroid update حتى الاستقرار تقريبًا.</p>
+<div class="eq">Assign xᵢ to nearest μₖ ↔ Update μₖ as cluster mean</div>
+<h3>ج) k-NN</h3>
+<p>مثال يكسر فكرة «كل تدريب = optimization». في k-NN التقليدي، مرحلة fit قد تكون أساسًا تخزين البيانات وتنظيمها للبحث. التعلم هنا <b>instance-based</b>.</p>
+<div class="callout note">لهذا نعتمد عبارة «تكوين learned state» بدل «تعديل weights» عندما نريد تعريفًا يشمل طيفًا أوسع من الخوارزميات.</div>
+</section>
+
+<section id="s13" class="section">
+<h2>13) الشبكات العصبية: أين يقع كل مفهوم؟</h2>
+<div class="pipeline">
+<div class="node n1">Mini-batch<br><small>(X,y)</small></div><div class="arrow">←</div>
+<div class="node n2">Forward Pass<br><small>ŷ=f(X;θ)</small></div><div class="arrow">←</div>
+<div class="node n3">Loss<br><small>L(y,ŷ)</small></div><div class="arrow">←</div>
+<div class="node n4">Backprop<br><small>∇θL</small></div><div class="arrow">←</div>
+<div class="node n5">Optimizer Update<br><small>θ ← update(θ)</small></div>
+</div>
+<p>تتكرر هذه الدورة عبر iterations/epochs. الشبكة لا «تقرأ المعنى» كما يفعل الإنسان؛ حسابيًا نحن نحدّث learned parameters وفق signal مستخرج من objective.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>العنصر</th><th>في Neural Network</th></tr></thead>
+<tbody>
+<tr><td>Model architecture</td><td>layers، connections، activations</td></tr>
+<tr><td>Learned parameters</td><td>weights وbiases</td></tr>
+<tr><td>Hyperparameters</td><td>learning rate، batch size، depth، regularization...</td></tr>
+<tr><td>Learning signal</td><td>loss gradient أو signal آخر</td></tr>
+<tr><td>Optimizer</td><td>SGD، Adam...</td></tr>
+<tr><td>Training</td><td>الدورة الكاملة عبر البيانات وتحديث state</td></tr>
+<tr><td>Inference</td><td>forward computation باستخدام learned state</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s14" class="section">
+<h2>14) هل «يتعلم من الداتا» صحيحة في كل أنواع ML؟</h2>
+<p>نعم بالمعنى الواسع للخبرة، لكن كلمة <b>data</b> قد تكون أضيق من المطلوب في بعض السياقات. Mitchell يستخدم <b>Experience E</b> لهذا السبب.</p>
+<div class="grid4">
+<div class="card blue"><h4>Supervised</h4><p>Experience غالبًا أزواج (X,y).</p></div>
+<div class="card teal"><h4>Unsupervised</h4><p>Experience قد تكون X فقط؛ لا labels.</p></div>
+<div class="card violet"><h4>Self-supervised</h4><p>targets تُشتق من data نفسها.</p></div>
+<div class="card amber"><h4>Reinforcement</h4><p>Experience = states, actions, rewards, transitions.</p></div>
+</div>
+<div class="callout ok"><b>للشرح العام:</b> «النظام يتعلم من الخبرة Experience، وغالبًا تتمثل هذه الخبرة في بيانات.» هذه الصياغة أوسع وأقرب إلى Mitchell.</div>
+</section>
+
+<section id="s15" class="section">
+<h2>15) Parameters وHyperparameters: من يتعلم ماذا؟</h2>
+<div class="grid2">
+<div class="card green"><h4>Parameters</h4><p>جزء من learned state، يتحدد اعتمادًا على training data داخل عملية fit/training.</p><p>أمثلة: β، weights، biases، centroids.</p></div>
+<div class="card amber"><h4>Hyperparameters</h4><p>إعدادات تتحكم في النموذج أو خوارزمية التدريب. تُختار قبل training run أو تُضبط عبر outer loop.</p><p>أمثلة: λ، learning rate، max_depth، k.</p></div>
+</div>
+<h3>لكن ماذا عن Hyperparameter Tuning؟</h3>
+<p>عندما نستخدم cross-validation أو Bayesian optimization لاختيار hyperparameters، يمكن أن نقول إنها «تُضبط من البيانات» على مستوى خارجي، لكن يجب الفصل بين:</p>
+<div class="eq">Inner training: learn model state &nbsp;&nbsp; | &nbsp;&nbsp; Outer tuning: select hyperparameters</div>
+<div class="callout warn">لا تقل للطالب ببساطة «hyperparameters لا تأتي من البيانات أبدًا». الأدق: «لا تُتعلم عادةً ضمن تحديثات المعلمات الداخلية للنموذج؛ ويمكن اختيارها أو ضبطها بإجراء منفصل يعتمد على validation data».</div>
+</section>
+
+<section id="s16" class="section">
+<h2>16) Training وFitting وEstimation: هل هي الشيء نفسه؟</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>المصطلح</th><th>السياق الشائع</th><th>المعنى</th></tr></thead>
+<tbody>
+<tr><td><b>Training</b></td><td>Machine Learning / Deep Learning</td><td>عملية تكوين learned state من experience.</td></tr>
+<tr><td><b>Fitting</b></td><td>Statistics + ML APIs</td><td>ملاءمة estimator/model للبيانات؛ scikit-learn تستخدم fit.</td></tr>
+<tr><td><b>Estimation</b></td><td>Statistics / Econometrics</td><td>تقدير unknown quantities مثل parameters/distributions.</td></tr>
+</tbody></table></div>
+<p>في linear regression قد تشير الثلاثة إلى العملية الأساسية نفسها من زوايا اصطلاحية مختلفة. لكن في RL مثلًا «training» أوسع من «parameter estimation» التقليدي، لأنه يتضمن interaction وpolicy improvement.</p>
+</section>
+
+<section id="s17" class="section">
+<h2>17) متى نقول إن التعلّم نجح؟ Generalization وOverfitting</h2>
+<p>التدريب يجيب: «هل استطعنا تكوين model state من training experience؟». لكن التعلم الجيد يسأل: «هل ما اكتسبناه مفيد خارج العينة؟».</p>
+<div class="grid3">
+<div class="card green"><h4>Underfitting</h4><p>الأداء ضعيف حتى على training data؛ النموذج أو التدريب غير كافٍ.</p></div>
+<div class="card blue"><h4>Good Generalization</h4><p>أداء جيد على training وعلى unseen data مع gap معقول.</p></div>
+<div class="card red"><h4>Overfitting</h4><p>training performance ممتاز، لكن unseen performance ضعيف.</p></div>
+</div>
+<div class="eq">Generalization gap ≈ Test/Validation Error − Training Error</div>
+<div class="callout info"><b>الرابط مع Mitchell:</b> إذا كان P هو أداء خارج العينة، فإن مفهوم «التعلم» يصبح أقرب مباشرة إلى generalization لا إلى مجرد انخفاض training loss.</div>
+</section>
+
+<section id="s18" class="section">
+<h2>18) الجمل الصحيحة التي تقولها حرفيًا في المحاضرة</h2>
+<div class="callout ok"><div class="say">1. «نستخدم خوارزمية تعلّم على بيانات التدريب من أجل بناء أو تقدير نموذج.»</div></div>
+<div class="callout ok"><div class="say">2. «ندرب النموذج على البيانات باستخدام خوارزمية/إجراء تعلّم.»</div></div>
+<div class="callout ok"><div class="say">3. «أثناء التدريب تتكون الحالة المتعلَّمة للنموذج اعتمادًا على البيانات.»</div></div>
+<div class="callout ok"><div class="say">4. «في النماذج المعلمية، تتعلم/تُقدَّر parameters من بيانات التدريب.»</div></div>
+<div class="callout ok"><div class="say">5. «في نظرية التعلم يمكن تمثيل learning algorithm على أنها دالة A تحول عينة S إلى فرضية h: h=A(S).»</div></div>
+<div class="callout ok"><div class="say">6. «التدريب هو العملية؛ النموذج المدرَّب هو الناتج؛ والتعلّم الجيد يظهر في تحسن الأداء والتعميم.»</div></div>
+<div class="callout ok"><div class="say">7. «Optimizer ليس هو النموذج، وليس هو كل خوارزمية التعلم؛ هو أداة عددية لتحديث parameters في خوارزميات معينة.»</div></div>
+<div class="callout ok"><div class="say">8. «بعد التدريب نستخدم النموذج في inference/prediction دون إعادة تعلّم parameters في كل تنبؤ عادي.»</div></div>
+</section>
+
+<section id="s19" class="section">
+<h2>19) عبارات شائعة تحتاج تصحيحًا</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>العبارة</th><th>الحكم</th><th>التصحيح أو التوضيح</th></tr></thead>
+<tbody>
+<tr><td>«الخوارزمية تتعلم من البيانات»</td><td class="maybe">مقبولة سياقيًا</td><td>صحيحة في learning theory بالمعنى أن A تتعلم/تنتج h من S؛ عمليًا أوضح أن تقول «نستخدمها لتدريب model».</td></tr>
+<tr><td>«النموذج يتعلم من البيانات»</td><td class="yes">ممتازة عمليًا</td><td>خصوصًا عند شرح learned parameters/state.</td></tr>
+<tr><td>«ندرب الخوارزمية»</td><td class="maybe">قد تسبب لبسًا</td><td>الأفضل: «ندرب النموذج باستخدام الخوارزمية»؛ إلا إذا كان السياق يستخدم اسم algorithm للدلالة على estimator كامل.</td></tr>
+<tr><td>«البيانات تتعلم»</td><td class="no">غير صحيحة</td><td>البيانات هي experience/input وليست المتعلم.</td></tr>
+<tr><td>«التدريب هو Gradient Descent»</td><td class="no">غير صحيحة</td><td>GD طريقة optimization واحدة من طرق كثيرة.</td></tr>
+<tr><td>«كل ما يتعلمه النموذج هو weights»</td><td class="no">غير شاملة</td><td>الأصح: learned state، التي قد تكون weights أو tree structure أو centroids أو stored instances.</td></tr>
+<tr><td>«إذا انخفض training loss فقد تعلم النموذج جيدًا»</td><td class="no">غير كافية</td><td>نحتاج validation/test/generalization.</td></tr>
+<tr><td>«Hyperparameters لا يمكن أن تتأثر بالبيانات»</td><td class="no">مضللة</td><td>يمكن tuning باستخدام validation؛ لكنها ليست عادةً learned parameters داخل inner training loop.</td></tr>
+</tbody></table></div>
+</section>
+
+<section id="s20" class="section">
+<h2>20) أسئلة صفية واختبار فهم</h2>
+<div class="quiz"><b>س1.</b> في الانحدار الخطي، إذا استخدمنا OLS، ما النموذج وما الخوارزمية وما learned state؟<br><button onclick="toggleAns(this)">إظهار الإجابة</button><div class="answer">النموذج: العلاقة الخطية؛ الخوارزمية/الإجراء: OLS fitting؛ learned state: القيم المقدّرة β̂ (والأشياء المشتقة منها بحسب التطبيق).</div></div>
+<div class="quiz"><b>س2.</b> هل Gradient Descent هو Learning Algorithm كامل؟<br><button onclick="toggleAns(this)">إظهار الإجابة</button><div class="answer">ليس بالضرورة. هو optimization algorithm. قد يكون جزءًا من training procedure أوسع يشمل model, loss, batching, regularization, stopping وغيرها.</div></div>
+<div class="quiz"><b>س3.</b> لماذا عبارة «كل تدريب يعدّل weights» خاطئة؟<br><button onclick="toggleAns(this)">إظهار الإجابة</button><div class="answer">لأن models مثل decision trees تتعلم structure/splits، وk-NN قد يخزن instances، وK-means يتعلم centroids. لذلك «learned state» أعم.</div></div>
+<div class="quiz"><b>س4.</b> نموذج حقق 0 خطأ على training set و40% خطأ على test set. هل التدريب نجح؟ وهل التعلم جيد؟<br><button onclick="toggleAns(this)">إظهار الإجابة</button><div class="answer">عملية التدريب تمكنت من ملاءمة training data، لكن generalization ضعيف؛ لذلك لا نصف التعلم بأنه جيد بالنسبة إلى unseen data.</div></div>
+<div class="quiz"><b>س5.</b> في Reinforcement Learning، هل كلمة «data» تكفي لوصف E؟<br><button onclick="toggleAns(this)">إظهار الإجابة</button><div class="answer">قد تكفي بصورة واسعة، لكن «experience» أدق: trajectories/interactions تشمل states, actions, rewards, transitions وقد تُجمع أثناء التعلم نفسه.</div></div>
+</section>
+
+<section id="s21" class="section">
+<h2>21) الخلاصة المرجعية — خريطة ذهنية واحدة</h2>
+<div class="pipeline">
+<div class="node n1">Experience E<br><small>بيانات / تفاعلات</small></div><div class="arrow">←</div>
+<div class="node n2">Learning Algorithm A<br><small>الإجراء الذي يستفيد من E</small></div><div class="arrow">←</div>
+<div class="node n3">Training / Fitting<br><small>تنفيذ A على E</small></div><div class="arrow">←</div>
+<div class="node n4">Learned State<br><small>θ̂ / structure / prototypes...</small></div><div class="arrow">←</div>
+<div class="node n5">Trained Model h<br><small>يُستخدم في inference</small></div>
+</div>
+<div class="callout note">
+<p><b>الصيغة النظرية:</b> <span class="term">h = A(S)</span>.</p>
+<p><b>الصيغة العملية:</b> نستخدم learning algorithm لتدريب model على training data.</p>
+<p><b>الصيغة الإحصائية:</b> نلائم model ونقدّر parameters من sample.</p>
+<p><b>معيار النجاح الحقيقي:</b> تحسن performance على task نتيجة experience، مع اهتمام خاص بالـ generalization.</p>
+</div>
+<h3>الجملة النهائية التي يُستحسن أن يحفظها الطالب</h3>
+<div class="callout ok"><p style="font-size:22px;margin:0"><b>«البيانات/الخبرة هي ما نتعلم منه، خوارزمية التعلم تحدد كيف نستفيد من هذه الخبرة، التدريب هو تنفيذ هذه العملية، والحالة المتعلَّمة هي ما يكتسبه النموذج؛ وبعدها نستخدم النموذج المدرَّب للتنبؤ أو القرار.»</b></p></div>
+</section>
+
+<section id="refs" class="section">
+<h2>المراجع الأكاديمية والمرجعية</h2>
+<p class="print-note">اختيرت هذه المراجع لتثبيت المصطلحات من مصادر جامعية وكتب مرجعية وتوثيق برمجي رسمي. الروابط مضمّنة لسهولة الرجوع.</p>
+<ol class="source">
+<li><b>Tom M. Mitchell (1997), Machine Learning, McGraw-Hill.</b> صفحة الكتاب لدى Carnegie Mellon University: <a href="https://www.cs.cmu.edu/~tom/mlbook.html" target="_blank">cs.cmu.edu/~tom/mlbook.html</a>. يعرض التصور العام للتعلم بوصفه تحسنًا تلقائيًا عبر الخبرة.</li>
+<li><b>Carnegie Mellon University — Tom Mitchell, Machine Learning course descriptions.</b> <a href="https://www.cs.cmu.edu/~tom/10601_sp09/about.html" target="_blank">CMU 10-601</a>. يثبت صياغة «computer programs that automatically improve their performance through experience».</li>
+<li><b>Shai Shalev-Shwartz & Shai Ben-David (2014), Understanding Machine Learning: From Theory to Algorithms, Cambridge University Press.</b> <a href="https://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/understanding-machine-learning-theory-algorithms.pdf" target="_blank">نسخة المؤلف</a>. مرجع أساسي لصياغة learning algorithm، samples، hypotheses، generalization.</li>
+<li><b>Stanford CS229 — Machine Learning Lecture Notes.</b> <a href="https://cs229.stanford.edu/summer2023/cs229-notes1.pdf" target="_blank">Supervised Learning notes</a>. يعرض اختيار/تعلم parameters θ من training set وتقليل cost.</li>
+<li><b>Google for Developers — Machine Learning Glossary.</b> <a href="https://developers.google.com/machine-learning/glossary" target="_blank">ML Glossary</a>. يعرّف training، model، parameters، hyperparameters بلغة تطبيقية واضحة.</li>
+<li><b>scikit-learn — Glossary / Estimator API.</b> <a href="https://scikit-learn.org/stable/glossary.html" target="_blank">Glossary</a> و<a href="https://scikit-learn.org/stable/developers/develop.html" target="_blank">Estimator development</a>. يوضح أن fit يتعلم من البيانات ويخزن estimated model attributes.</li>
+<li><b>Ian Goodfellow, Yoshua Bengio, Aaron Courville (2016), Deep Learning, MIT Press.</b> <a href="https://www.deeplearningbook.org/contents/optimization.html" target="_blank">Chapter 8: Optimization for Training Deep Models</a>. مهم للتمييز بين learning وoptimization والتدريب في deep learning.</li>
+<li><b>Trevor Hastie, Robert Tibshirani, Jerome Friedman (2009), The Elements of Statistical Learning.</b> <a href="https://hastie.su.domains/ElemStatLearn/" target="_blank">الموقع الرسمي للكتاب</a>. مرجع لربط statistical learning بالـ fitting، prediction، model complexity، generalization.</li>
+</ol>
+<div class="callout info"><b>ملاحظة منهجية:</b> المصطلحات ليست موحّدة حرفيًا بين كل الكتب. لذلك تعتمد هذه المحاضرة تفريقًا «طبقيًا»: تعريف عام عند Mitchell، صياغة صورية في learning theory، وصياغة عملية عند التدريب والبرمجة. هذا يمنع تحويل اختلاف الاصطلاح إلى تناقض مفاهيمي.</div>
+</section>
+</main>
+</div>
+
+<footer class="footer"><div class="wrap"><strong>محاضرة تأسيسية في Machine Learning</strong><br>من يتعلّم؟ من يُدرَّب؟ وكيف تتحول الخبرة إلى نموذج قابل للاستخدام؟<br><span style="font-size:13px;color:#9fb2c9">إعداد: Dr Merwan Roudane • صُممت للطباعة والعرض داخل المتصفح.</span></div></footer>
+
+<script>
+function toggleAns(btn){
+  const ans=btn.nextElementSibling;
+  const visible=ans.style.display==='block';
+  ans.style.display=visible?'none':'block';
+  btn.textContent=visible?'إظهار الإجابة':'إخفاء الإجابة';
+}
+</script>
+</body>
+</html>

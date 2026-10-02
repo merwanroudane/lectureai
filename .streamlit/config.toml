@@ -1,0 +1,68 @@
+# ======================================================================
+#  أسس الذكاء الاصطناعي — Foundations of AI Learning
+#  Dr Merwan Roudane
+#  Light, warm, non-dark theme with Arabic-first typography.
+# ======================================================================
+
+[theme]
+base = "light"
+
+primaryColor            = "#5A6AE0"
+backgroundColor         = "#FFFFFF"
+secondaryBackgroundColor = "#F3F6FF"
+textColor               = "#223055"
+linkColor               = "#3A55C9"
+borderColor             = "#DFE5F7"
+codeBackgroundColor     = "#F6F8FE"
+codeTextColor           = "#2B3A63"
+dataframeBorderColor    = "#DFE5F7"
+dataframeHeaderBackgroundColor = "#EEF2FF"
+
+showWidgetBorder  = true
+showSidebarBorder = true
+baseRadius   = "14px"
+buttonRadius = "12px"
+linkUnderline = false
+
+font        = "Cairo:https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
+headingFont = "Tajawal:https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap"
+codeFont    = "'JetBrains Mono':https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+
+baseFontSize     = 17
+baseFontWeight   = 400
+codeFontSize     = "0.85rem"
+headingFontSizes = ["38px", "29px", "23px", "19px", "17px", "15px"]
+headingFontWeights = [800, 800, 700, 700, 600, 600]
+
+# لوحة ألوان فاتحة ومتناسقة
+redColor    = "#E86A7C"
+orangeColor = "#F0943F"
+yellowColor = "#E8B93B"
+greenColor  = "#3FB68B"
+blueColor   = "#4C8DF5"
+violetColor = "#9B7BE8"
+grayColor   = "#7A86A3"
+
+chartCategoricalColors = [
+  "#5A6AE0", "#3FB68B", "#F0943F", "#9B7BE8",
+  "#4C8DF5", "#E86A7C", "#E8B93B", "#36BFC7",
+]
+chartSequentialColors = [
+  "#F5F7FF", "#E4EAFD", "#CFD9FA", "#B7C6F6", "#9DB1F1",
+  "#8299EA", "#6881E2", "#5068D6", "#3B50C0", "#2A3B9E",
+]
+
+[theme.sidebar]
+backgroundColor          = "#EEF2FF"
+secondaryBackgroundColor = "#E2E9FD"
+codeBackgroundColor      = "#E2E9FD"
+textColor                = "#243160"
+borderColor              = "#D3DDF8"
+primaryColor             = "#4457CF"
+linkColor                = "#3A55C9"
+
+[server]
+runOnSave = true
+
+[browser]
+gatherUsageStats = false
