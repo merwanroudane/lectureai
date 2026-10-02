@@ -145,7 +145,7 @@ def phase_anatomy() -> str:
     g.append('<text x="76" y="134" class="mra-ts" text-anchor="middle" style="font-size:10px">'
              'لا أعبر قبل أن أُجيب</text>')
     g.append('<text x="350" y="166" class="mra-ts" text-anchor="middle">'
-             'لكلّ مرحلة <b>بوّابة عبور</b>: سؤالٌ إن لم تُجب عنه بوضوح فلا تنتقل — '
+             'لكلّ مرحلة <tspan class=mra-b>بوّابة عبور</tspan>: سؤالٌ إن لم تُجب عنه بوضوح فلا تنتقل — '
              'وإلّا ورثت الغموض كلّه إلى ما بعده</text>')
     return f'<svg viewBox="0 0 700 178">{"".join(g)}</svg>'
 
@@ -190,7 +190,7 @@ def safe_order() -> str:
             g.append(f'<path d="M {x} 189 L {right[i + 1][0] + (164 if i < 2 else 136)} 189" '
                      f'stroke="#5CC6A4" stroke-width="2.4" class="mra-flow" marker-end="url(#arrT)"/>')
     g.append('<text x="350" y="258" class="mra-ts" text-anchor="middle">'
-             'قاعدة واحدة لا استثناء لها: <b>قسِّم قبل أن تلمس أيّ شيء</b></text>')
+             'قاعدة واحدة لا استثناء لها: <tspan class=mra-b>قسِّم قبل أن تلمس أيّ شيء</tspan></text>')
     return f'<svg viewBox="0 0 700 270">{"".join(g)}</svg>'
 
 
@@ -222,7 +222,7 @@ def data_contract() -> str:
             g.append(f'<path d="M 350 {y + 38} L 350 {y + 44}" stroke="{stroke}" stroke-width="2.2" '
                      f'marker-end="url(#arrI)"/>')
     g.append('<text x="350" y="316" class="mra-ts" text-anchor="middle">'
-             'ستّ طبقات تُفحَص <b>قبل</b> أيّ نموذج — وكلّ طبقة تُكتب كاختبار آليّ يُعاد تشغيله</text>')
+             'ستّ طبقات تُفحَص <tspan class=mra-b>قبل</tspan> أيّ نموذج — وكلّ طبقة تُكتب كاختبار آليّ يُعاد تشغيله</text>')
     g.append('<text x="350" y="336" class="mra-te" text-anchor="middle">'
              'a data contract, not a one-off inspection</text>')
     return f'<svg viewBox="0 0 700 348">{"".join(g)}</svg>'
@@ -277,7 +277,7 @@ def problem_type_tree() -> str:
             ("حالات نادرة جدًّا ومتنوّعة", "كشف شذوذ", "anomaly detection", "rose"),
             ("سلسلة قرارات بمكافأة", "تعلّم معزّز", "reinforcement learning", "violet"),
         ],
-        "والسؤال السابق على هذا كلّه: <b>هل يحتاج الأمر تعلّم آلة أصلًا، أم تكفي قاعدة؟</b>",
+        "والسؤال السابق على هذا كلّه: <tspan class=mra-b>هل يحتاج الأمر تعلّم آلة أصلًا، أم تكفي قاعدة؟</tspan>",
     )
 
 
@@ -291,7 +291,7 @@ def split_decision_tree() -> str:
             ("فئات غير متوازنة", "تقسيم طبقي", "StratifiedKFold", "sky"),
             ("لا شيء ممّا سبق", "تقسيم عشوائي", "KFold", "teal"),
         ],
-        "<b>التقسيم العشوائي هو الحالة الأخيرة لا الأولى</b> — افحص البنية قبل أن تقسم",
+        "<tspan class=mra-b>التقسيم العشوائي هو الحالة الأخيرة لا الأولى</tspan> — افحص البنية قبل أن تقسم",
     )
 
 
@@ -305,7 +305,7 @@ def metric_decision_tree() -> str:
             ("تصنيف · الفئة نادرة", "PR-AUC أو الاسترجاع عند k", "PR-AUC / Recall@k", "rose"),
             ("القيمة الاحتمالية نفسها مستعملة", "لوغاريتمية أو برير", "log loss / Brier", "violet"),
         ],
-        "واذكر دائمًا <b>خطّ أساس</b> بجانب المقياس — فالرقم وحده لا يعني شيئًا",
+        "واذكر دائمًا <tspan class=mra-b>خطّ أساس</tspan> بجانب المقياس — فالرقم وحده لا يعني شيئًا",
     )
 
 
@@ -370,5 +370,5 @@ def effort_bars() -> str:
         g.append(f'<text x="330" y="{y + 32}" class="mra-te" text-anchor="start" '
                  f'style="font-size:9px">{en}</text>')
     g.append('<text x="350" y="316" class="mra-ts" text-anchor="middle">'
-             'الجزء «الممتع» — النمذجة — أقلّ من <b>عُشر</b> المشروع</text>')
+             'الجزء «الممتع» — النمذجة — أقلّ من <tspan class=mra-b>عُشر</tspan> المشروع</text>')
     return f'<svg viewBox="0 0 700 328">{"".join(g)}</svg>'

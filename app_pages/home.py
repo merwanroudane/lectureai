@@ -3,6 +3,7 @@
 import streamlit as st
 
 from lib import anim, ui
+from lib.content import platform_stats
 
 ui.hero(
     "أسس التعلّم في الذكاء الاصطناعي",
@@ -14,11 +15,12 @@ ui.hero(
     kicker="منصّة تعليمية نظريّة",
 )
 
+_s = platform_stats()
 col_a, col_b, col_c, col_d = st.columns(4)
 col_a.metric("محاور نظريّة", "⁦8⁩", border=True)
-col_b.metric("صفحات مفصّلة", "⁦31⁩", border=True)
-col_c.metric("رسوم متحرّكة", "⁦61⁩", border=True)
-col_d.metric("مصطلح مُعرَّف", "⁦194⁩", border=True)
+col_b.metric("صفحات مفصّلة", f"⁦{_s['pages']}⁩", border=True)
+col_c.metric("رسوم متحرّكة", f"⁦{_s['diagrams']}⁩", border=True)
+col_d.metric("مصطلح مُعرَّف", f"⁦{_s['terms']}⁩", border=True)
 
 # ----------------------------------------------------------------------
 ui.section("لماذا نبدأ من الفلسفة، لا من الشيفرة؟", "Why philosophy before code")

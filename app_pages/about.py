@@ -3,7 +3,7 @@
 import streamlit as st
 
 from lib import anim, ui
-from lib.content import GLOSSARY
+from lib.content import GLOSSARY, platform_stats
 
 ui.hero(
     "عن المنصّة",
@@ -31,10 +31,11 @@ st.html(
 </div>"""
 )
 
+_s = platform_stats()
 c1, c2, c3, c4 = st.columns(4)
 c1.metric("محاور نظريّة", "⁦8⁩", border=True)
-c2.metric("صفحات", "⁦31⁩", border=True)
-c3.metric("رسوم متحرّكة", "⁦61⁩", border=True)
+c2.metric("صفحات", f"⁦{_s['pages']}⁩", border=True)
+c3.metric("رسوم متحرّكة", f"⁦{_s['diagrams']}⁩", border=True)
 c4.metric("مصطلح في المعجم", f"⁦{len(GLOSSARY)}⁩", border=True)
 
 # ======================================================================

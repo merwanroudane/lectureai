@@ -72,7 +72,7 @@ def two_inferences() -> str:
     g.append(_box(44, 44, 190, 58, "معلمة المجتمع", "population parameter", "violet", .2, 14, 12))
     g.append('<path d="M 466 73 L 240 73" stroke="#8192EC" stroke-width="3" fill="none" '
              'class="mra-flow" marker-end="url(#arrI)"/>')
-    g.append('<text x="352" y="62" class="mra-ts" text-anchor="middle">نستدلّ على <b>المجهول</b></text>')
+    g.append('<text x="352" y="62" class="mra-ts" text-anchor="middle">نستدلّ على <tspan class=mra-b>المجهول</tspan></text>')
     g.append('<text x="352" y="92" class="mra-te" text-anchor="middle">reasoning about what we cannot see</text>')
 
     # الاستدلال في تعلّم الآلة
@@ -83,7 +83,7 @@ def two_inferences() -> str:
     g.append(_box(44, 162, 190, 58, "تنبّؤ", "prediction ŷ", "mint", .45, 14, 13))
     g.append('<path d="M 466 191 L 240 191" stroke="#5CC6A4" stroke-width="3" fill="none" '
              'class="mra-flow" marker-end="url(#arrT)"/>')
-    g.append('<text x="352" y="180" class="mra-ts" text-anchor="middle">نُشغّل <b>المعلوم</b></text>')
+    g.append('<text x="352" y="180" class="mra-ts" text-anchor="middle">نُشغّل <tspan class=mra-b>المعلوم</tspan></text>')
     g.append('<text x="352" y="210" class="mra-te" text-anchor="middle">just running a fixed function</text>')
 
     g.append('<text x="350" y="260" class="mra-ts" text-anchor="middle">'
@@ -120,7 +120,7 @@ def parametric_vs_nonparametric() -> str:
              'n  —  training sample size →</text>')
     g.append('<text x="84" y="36" class="mra-te" text-anchor="start">|learned state|</text>')
     g.append('<text x="350" y="252" class="mra-ts" text-anchor="middle">'
-             'السؤال الفاصل ليس «كم معاملًا؟» بل: <b>هل يتحدّد عددها قبل رؤية البيانات؟</b></text>')
+             'السؤال الفاصل ليس «كم معاملًا؟» بل: <tspan class=mra-b>هل يتحدّد عددها قبل رؤية البيانات؟</tspan></text>')
     return f'<svg viewBox="0 0 700 264">{"".join(g)}</svg>'
 
 
@@ -151,7 +151,7 @@ def eager_vs_lazy() -> str:
         g.append(f'<text x="{390 - w_fit - w_pred / 2 - 14}" y="{y + 66}" text-anchor="middle" '
                  f'style="font-family:Cairo;font-size:11px;font-weight:700;fill:{ink}">وقت التنبّؤ</text>')
     g.append('<text x="350" y="256" class="mra-ts" text-anchor="middle">'
-             'الجهد الكلّي لا يختفي — بل <b>ينتقل</b>. والكسول يدفع الثمن في كلّ تنبّؤ.</text>')
+             'الجهد الكلّي لا يختفي — بل <tspan class=mra-b>ينتقل</tspan>. والكسول يدفع الثمن في كلّ تنبّؤ.</text>')
     g.append('<text x="350" y="276" class="mra-te" text-anchor="middle">'
              'the work does not vanish, it moves</text>')
     return f'<svg viewBox="0 0 700 286">{"".join(g)}</svg>'
@@ -237,8 +237,8 @@ def stochastic_training() -> str:
                  f'<text x="222" y="{y + 47}" class="mra-te" text-anchor="middle">'
                  f'AUC = 0.8{3 + i}{1 + 2 * i}</text></g>')
     g.append('<text x="350" y="252" class="mra-ts" text-anchor="middle">'
-             'نفس الخوارزمية + نفس البيانات ← <b>نماذج مختلفة</b>. '
-             'النموذج إذن <b>متغيّر عشوائي</b>، لا شيء ثابت.</text>')
+             'نفس الخوارزمية + نفس البيانات ← <tspan class=mra-b>نماذج مختلفة</tspan>. '
+             'النموذج إذن <tspan class=mra-b>متغيّر عشوائي</tspan>، لا شيء ثابت.</text>')
     g.append('<text x="350" y="272" class="mra-te" text-anchor="middle">'
              'always report the seed, and the variance across seeds</text>')
     return f'<svg viewBox="0 0 700 282">{"".join(g)}</svg>'

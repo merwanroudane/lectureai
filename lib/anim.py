@@ -75,6 +75,7 @@ html, body { margin:0; padding:0; background:transparent; overflow:hidden; }
    مع عزل ثنائي الاتّجاه حتّى تبقى الحروف العربية مرتّبة ترتيبها الصحيح. */
 .mra-frame svg text { direction: ltr; unicode-bidi: isolate; }
 
+.mra-b  { font-weight: 800; }          /* بديل <b> داخل SVG */
 .mra-t  { font-family:'Cairo', sans-serif; font-size:13px; font-weight:700; fill:#2F3D66; }
 .mra-ts { font-family:'Cairo', sans-serif; font-size:11px; font-weight:600; fill:#6B7AA8; }
 .mra-te { font-family:'JetBrains Mono', monospace; font-size:9.5px; font-weight:600;

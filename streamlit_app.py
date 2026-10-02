@@ -53,6 +53,7 @@ NAV = {
         P("supervised.py", "التعلّم بإشراف · Supervised", ":material/school:"),
         P("unsupervised.py", "التعلّم بلا إشراف · Unsupervised", ":material/bubble_chart:"),
         P("other_paradigms.py", "أنماط أخرى · Paradigms", ":material/alt_route:"),
+        P("fourteen_types.py", "الأنواع الـ 14 · 14 Types", ":material/category:"),
     ],
     "TRAINING": [
         P("training.py", "ما معنى التدريب؟ · Training", ":material/fitness_center:"),
