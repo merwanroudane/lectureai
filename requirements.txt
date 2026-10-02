@@ -1,4 +1,10 @@
-streamlit>=1.57
-altair>=5.0
-numpy>=1.24
-pandas>=2.0
+# أسس التعلّم في الذكاء الاصطناعي — Dr Merwan Roudane
+# يتطلّب Python 3.11 أو أحدث
+#
+# ملاحظة: الحدّ الأدنى لـ streamlit هو 1.63 لأنّ المنصّة تستعمل
+# st.navigation و st.Page و st.iframe و st.pills و width="stretch".
+
+streamlit>=1.63,<2
+altair>=5.4,<7
+numpy>=1.26,<3
+pandas>=2.2,<4

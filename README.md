@@ -33,13 +33,56 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
-يتطلّب **Streamlit 1.57** أو أحدث.
+يتطلّب **Python 3.11** أو أحدث، و**Streamlit 1.63** أو أحدث.
+
+---
+
+## النشر
+
+### 1 · Streamlit Community Cloud (الأسهل والمجّاني)
+
+المستودع عامّ وجاهز للنشر دون أيّ ملفّ إضافي:
+
+1. ادخل إلى <https://share.streamlit.io> وسجّل الدخول بحساب GitHub.
+2. اضغط **New app** ← **Deploy a public app from GitHub**.
+3. املأ الحقول:
+
+| الحقل | القيمة |
+|---|---|
+| Repository | `merwanroudane/lectureai` |
+| Branch | `main` |
+| Main file path | `streamlit_app.py` |
+| Python version (في **Advanced settings**) | `3.12` |
+
+4. اضغط **Deploy**. يستغرق البناء الأوّل بضع دقائق.
+
+يُحدَّث التطبيق تلقائيًّا مع كلّ `git push` إلى `main`.
+
+### 2 · الاستضافة الذاتية بـ Docker
+
+```bash
+docker build -t lectureai .
+```
+
+```bash
+docker run --rm -p 8501:8501 lectureai
+```
+
+ثمّ افتح <http://localhost:8501>. ملفّ `Dockerfile` يقرأ المنفذ من المتغيّر
+`PORT`، فيعمل كما هو على Render و Railway و Fly.io.
+
+### ملاحظات نشر
+
+- لا يحتاج التطبيق أيّ **أسرار** أو مفاتيح أو قاعدة بيانات.
+- الخطوط العربية تُحمَّل من Google Fonts، فيلزم اتّصال بالشبكة عند العرض.
+- الحالة كلّها داخل الجلسة؛ لا تخزين دائم ولا كتابة على القرص.
 
 ---
 
 ## البنية
 
 ```
+Dockerfile                  # للاستضافة الذاتية (اختياري)
 streamlit_app.py            # نقطة الدخول + التنقّل + الشريط الجانبي
 .streamlit/config.toml      # السمة الفاتحة + الخطوط العربية (Cairo / Tajawal)
 lib/

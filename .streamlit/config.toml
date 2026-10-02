@@ -61,8 +61,5 @@ borderColor              = "#D3DDF8"
 primaryColor             = "#4457CF"
 linkColor                = "#3A55C9"
 
-[server]
-runOnSave = true
-
 [browser]
 gatherUsageStats = false
